@@ -1,0 +1,23 @@
+﻿name: CI Pipeline
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Dependencies
+        run: |
+          pip install pytest flake8
+          
+      - name: Run Linter (Flake8)
+        run: flake8 library/ tests/ --count --max-line-length=160 --ignore=E402,W503 --statistics
+
+      - name: Run Tests
+        run: pytest tests/
