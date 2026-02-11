@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.log
+*.retry
+.ansible/
+.pytest_cache/
+.coverage
+htmlcov/

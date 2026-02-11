@@ -1,0 +1,5 @@
+---
+# Padrões globais para OT
+modbus_port: 502
+modbus_timeout: 3
+default_unit_id: 1

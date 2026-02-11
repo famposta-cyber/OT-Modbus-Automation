@@ -1,0 +1,20 @@
+---
+- name: Monitoramento Geral de Ativos OT
+  hosts: ot_assets
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Coletar Telemetria (Health Check)
+      modbus_check:
+        host: "{{ ansible_host }}"
+        port: "{{ modbus_port }}"
+        unit_id: "{{ default_unit_id }}"
+        address: 100  # Endereço padrão de status
+        count: 1
+      register: plc_status
+      ignore_errors: yes
+
+    - name: Exibir Status
+      debug:
+        msg: "PLC {{ inventory_hostname }} Status: {{ plc_status.registers | default('OFFLINE') }}"

@@ -1,0 +1,5 @@
+# .ansible-lint
+profile: basic
+exclude_paths:
+  - .github/
+  - tests/

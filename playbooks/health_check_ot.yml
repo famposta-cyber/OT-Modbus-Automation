@@ -1,0 +1,23 @@
+---
+- name: Monitoramento Industrial - Modbus Telemetry
+  hosts: ot_assets
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Ler Registradores de Diagnóstico (Endereço 100)
+      modbus_check:
+        host: "{{ ansible_host }}"
+        unit_id: "{{ unit_id | default(1) }}"
+        address: 100
+        count: 2
+      register: telemetry
+
+    - name: Relatório de Estado do Ativo
+      debug:
+        msg: "Dispositivo {{ inventory_hostname }} - Registradores: {{ telemetry.registers }}"
+
+    - name: Alerta se o registrador estiver zerado (Exemplo de Falha)
+      fail:
+        msg: "Alerta! Sensor parado no dispositivo {{ inventory_hostname }}"
+      when: telemetry.registers[0] == 0
