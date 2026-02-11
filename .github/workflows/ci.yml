@@ -21,6 +21,6 @@ jobs:
 
       - name: Run Tests
         env:
-          # Agora o PowerShell vai escrever isso literalmente no arquivo
+          # AQUI ESTÁ A CORREÇÃO: Definimos a raiz do projeto no PYTHONPATH
           PYTHONPATH: ${{ github.workspace }}
         run: pytest tests/
