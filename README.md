@@ -1,12 +1,13 @@
-# OT Modbus Automation Framework
+﻿# OT Modbus Automation Framework
+[![CI Pipeline](https://github.com/famposta-cyber/OT-Modbus-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/famposta-cyber/OT-Modbus-Automation/actions/workflows/ci.yml)
 
-Automação para ambientes industriais críticos (OT) utilizando Ansible e Python.
+Ferramenta de automação e validação de segurança para redes OT (Modbus TCP), integrada com Ansible.
 
-## Estrutura
-- `library/`: Módulo customizado Modbus TCP.
-- `playbooks/`: Rotinas de verificação e telemetria.
-- `tests/`: Testes unitários para validação de lógica.
+## Funcionalidades
+- **Health Check Modbus:** Validação de conectividade e leitura de registradores.
+- **Integração Ansible:** Módulo customizado para playbooks de automação industrial.
+- **CI/CD Pipeline:** Testes unitários automatizados e verificação de estilo (PEP 8).
 
-## Execução Rápida
-```bash
-ansible-playbook -i inventory/hosts.ini playbooks/site.yml
+## Status
+- **Build:** Stable ✅
+- **Language:** Python 3.9+ 🐍
