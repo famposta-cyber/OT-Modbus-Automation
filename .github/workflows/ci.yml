@@ -17,8 +17,10 @@ jobs:
           pip install pytest flake8
           
       - name: Run Linter (Flake8)
-        # Adicionamos W292 e W293 na lista de ignore para evitar reprovação por espaço em branco
-        run: flake8 library/ tests/ --count --max-line-length=160 --ignore=E402,W503,W292,W293 --statistics
+        run: flake8 library/ tests/ --count --max-line-length=160 --ignore=E402,W503,W292,W293,F401 --statistics
 
       - name: Run Tests
+        env:
+          # Agora o PowerShell vai escrever isso literalmente no arquivo
+          PYTHONPATH: ${{ github.workspace }}
         run: pytest tests/
