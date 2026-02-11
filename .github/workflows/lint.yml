@@ -1,9 +1,9 @@
-name: Code Quality
+﻿name: Code Quality
 on: [push, pull_request]
 
 jobs:
   lint:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -13,4 +13,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run Flake8
-        run: flake8 library/ scripts/ tests/
+        # Aqui forçamos as regras direto no comando para não depender do setup.cfg
+        run: flake8 library/ scripts/ tests/ --max-line-length=160 --ignore=E402,W503,F401
